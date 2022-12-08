@@ -23,5 +23,7 @@ public class Home {
     private String title;
     private double price;
     private String description;
+    @ManyToOne
+    private User user;
 
 }
