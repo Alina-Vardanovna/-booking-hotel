@@ -1,4 +1,4 @@
-package com.example.bookinghotelcore.mapper;
+package com.example.bookinghotelcore.mapper.base;
 
 public interface BaseMapper <Entity, Request, Response>{
 

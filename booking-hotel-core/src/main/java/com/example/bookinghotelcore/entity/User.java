@@ -1,9 +1,9 @@
 package com.example.bookinghotelcore.entity;
 
 
+import com.example.bookinghoteldatatransfer.model.UserRole;
 import lombok.*;
 
-import javax.annotation.Resource;
 import javax.persistence.*;
 
 @Getter
@@ -28,6 +28,5 @@ public class User {
     private String password;
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
-//    private boolean isEnabled;
 
 }
