@@ -1,14 +1,15 @@
 package com.example.bookinghotelcore.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.bookinghoteldatatransfer.model.UserRole;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -26,11 +27,6 @@ public class User {
     private int phone;
     private String password;
     @Enumerated(value = EnumType.STRING)
-    private UserRole userRole;
-    private boolean isEnabled;
-    @ManyToOne
-    private Home home;
-
-
+    private UserRole role;
 
 }

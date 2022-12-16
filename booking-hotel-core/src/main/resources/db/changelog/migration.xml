@@ -4,63 +4,81 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet author="rstepanyan" id="initbd">
-        <createTable tableName="users">
+    <changeSet author="vardanovna" id="createTableUser">
+
+        <createTable tableName="user">
+
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
+
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+
             <column name="surname" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+
             <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+
             <column name="phone" type="int(1)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="role" type="enum ('MANAGER', 'ASSISTANT', 'USER')" defaultValue="USER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
         </createTable>
+
     </changeSet>
 
-    <changeSet author="rstepanyan1" id="initbd">
+    <changeSet author="vardanovna" id="createTableHome">
+
         <createTable tableName="home">
+
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
+
             <column name="price" type="double">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="description" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
 
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="user_id_fffgkf" referencedTableName="user"
+                             referencedColumnNames="id"/>
+            </column>
+
         </createTable>
+
     </changeSet>
 
-    <changeSet id="user_add_column_role" author="vardanovna">
-        <addColumn tableName="users">
-            <column name="user_role" type="enum ('MANAGER', 'ASSISTANT', 'USER')" defaultValue="USER">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
-    </changeSet>
-    <changeSet id="addRoleToUser" author="vardanovna">
-        <addColumn tableName="users">
-            <column name="role" type="enum ('MANAGER', 'ASSISTANT', 'USER')">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
-    </changeSet>
     <changeSet id="createTableBookHome" author="vardanovna">
+
         <createTable tableName="book_home">
+
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
             <column name="user_id" type="BIGINT">
-                <constraints nullable="false" foreignKeyName="user_id_ffgkf" referencedTableName="users"
+                <constraints nullable="false" foreignKeyName="user_id_ffgkf" referencedTableName="user"
                              referencedColumnNames="id"/>
             </column>
 
@@ -76,7 +94,9 @@
             <column name="book_days" type="int">
                 <constraints nullable="false"/>
             </column>
+
         </createTable>
+
     </changeSet>
 
 </databaseChangeLog>

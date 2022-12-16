@@ -1,13 +1,12 @@
 package com.example.bookinghotelcore.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,5 +22,8 @@ public class Home {
     private String title;
     private double price;
     private String description;
+    @ManyToOne
+    private User user;
+    private boolean isBooked;
 
 }
